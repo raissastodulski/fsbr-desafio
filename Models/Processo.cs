@@ -14,7 +14,7 @@ public class Processo
     
     [StringLength(20, MinimumLength = 20, ErrorMessage = "NPU deve possuir 20 caracteres")]
     [RegularExpression("^[0-9]*$", ErrorMessage = "NPU deve ser apenas númerico")]
-    public string NPU { get; set; }
+    public string Npu { get; set; }
     
     [Display(Name = "Data de cadastro")]
     [DataType(DataType.DateTime)]
@@ -24,7 +24,15 @@ public class Processo
     [DataType(DataType.Date)]
     public DateTime? DataDeVisualizacao { get; set; }
     
+    
+    [Required]
+    [Display(Name = "Município")]
     public string Municipio { get; set; }
+
+
+    [Required]
+    [Display(Name = "UF")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "UF deve conter 2 caracteres")]
     public string Uf { get; set; }
     
 }

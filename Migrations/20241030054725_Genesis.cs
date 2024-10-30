@@ -18,11 +18,11 @@ namespace fsbr_desafio.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    NPU = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    Npu = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
                     DataDeCadastro = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DataDeVisualizacao = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Municipio = table.Column<string>(type: "TEXT", nullable: false),
-                    Uf = table.Column<string>(type: "TEXT", nullable: false)
+                    Uf = table.Column<string>(type: "TEXT", maxLength: 2, nullable: false)
                 },
                 constraints: table =>
                 {

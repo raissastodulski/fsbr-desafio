@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using fsbr_desafio.Data;
 using fsbr_desafio.Models;
+using fsbr_desafio.Services;
+using System.Diagnostics;
 
 namespace fsbr_desafio.Controllers
 {
@@ -20,13 +22,15 @@ namespace fsbr_desafio.Controllers
         }
 
         // GET: Processo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pagina)
         {
-            return View(await _context.Processos.ToListAsync());
+            var processos = _context.Processos.AsNoTracking();
+            var paginacao = await ListaPaginada<Processo>.CreateAsync(processos, pagina ?? 1, tamanhoDaPagina: 10);
+            return View(paginacao);
         }
 
-        // GET: Processo/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Processo/Detalhes/5
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null)
             {
@@ -43,18 +47,18 @@ namespace fsbr_desafio.Controllers
             return View(processo);
         }
 
-        // GET: Processo/Create
-        public IActionResult Create()
+        // GET: Processo/Criar
+        public IActionResult Criar()
         {
             return View();
         }
 
-        // POST: Processo/Create
+        // POST: Processo/Criar
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,NPU,DataDeCadastro,DataDeVisualizacao,Municipio,Uf")] Processo processo)
+        public async Task<IActionResult> Criar([Bind("Id,Nome,Npu,DataDeCadastro,DataDeVisualizacao,Municipio,Uf")] Processo processo)
         {
             if (ModelState.IsValid)
             {
@@ -65,8 +69,8 @@ namespace fsbr_desafio.Controllers
             return View(processo);
         }
 
-        // GET: Processo/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Processo/Editar/5
+        public async Task<IActionResult> Editar(int? id)
         {
             if (id == null)
             {
@@ -81,12 +85,12 @@ namespace fsbr_desafio.Controllers
             return View(processo);
         }
 
-        // POST: Processo/Edit/5
+        // POST: Processo/Editar/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,NPU,DataDeCadastro,DataDeVisualizacao,Municipio,Uf")] Processo processo)
+        public async Task<IActionResult> Editar(int id, [Bind("Id,Nome,Npu,DataDeCadastro,DataDeVisualizacao,Municipio,Uf")] Processo processo)
         {
             if (id != processo.Id)
             {
@@ -116,8 +120,8 @@ namespace fsbr_desafio.Controllers
             return View(processo);
         }
 
-        // GET: Processo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Processo/Excluir/5
+        public async Task<IActionResult> Excluir(int? id)
         {
             if (id == null)
             {
@@ -134,10 +138,10 @@ namespace fsbr_desafio.Controllers
             return View(processo);
         }
 
-        // POST: Processo/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Processo/Excluir/5
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> ExcluirConfirmado(int id)
         {
             var processo = await _context.Processos.FindAsync(id);
             if (processo != null)

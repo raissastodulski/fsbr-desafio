@@ -1,63 +1,34 @@
-@model IEnumerable<fsbr_desafio.Models.Processo>
+@model ListaPaginada<fsbr_desafio.Models.Processo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Processos";
+    Processo modelo = null;
 }
 
-<h1>Index</h1>
+<h1>Processos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Criar">Criar novo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NPU)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDeCadastro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDeVisualizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Municipio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Uf)
-            </th>
+            <th>@Html.DisplayNameFor(model => modelo.Npu)</th>
+            <th>@Html.DisplayNameFor(model => modelo.DataDeCadastro)</th>
+            <th>@Html.DisplayNameFor(model => modelo.Uf)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@Html.DisplayFor(modelItem => item.Npu)</td>
+            <td>@Html.DisplayFor(modelItem => item.DataDeCadastro)</td>
+            <td>@Html.DisplayFor(modelItem => item.Uf)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NPU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataDeCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataDeVisualizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Municipio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uf)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Excluir" asp-route-id="@item.Id">Excluir</a>
             </td>
         </tr>
 }
