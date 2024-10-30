@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fsbr-desafio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d399cdf7f6afa7e079e4f64ce12a16c03f576ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("fsbr-desafio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fsbr-desafio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
