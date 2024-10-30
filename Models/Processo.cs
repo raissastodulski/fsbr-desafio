@@ -12,6 +12,7 @@ public class Processo
     [Required]
     public string? Nome { get; set; }
     
+    [Display(Name = "NPU")]
     [StringLength(20, MinimumLength = 20, ErrorMessage = "NPU deve possuir 20 caracteres")]
     [RegularExpression("^[0-9]*$", ErrorMessage = "NPU deve ser apenas númerico")]
     public string Npu { get; set; }
