@@ -46,6 +46,13 @@ namespace fsbr_desafio.Controllers
 
             return View(processo);
         }
+        
+        // GET: Processo/Municipios/5
+        public async Task<IActionResult> Municipios(string uf)
+        {
+            var cidades = await IbgeApi.BuscarMunicipiosPorUf(uf);
+            return Json(cidades);
+        }
 
         // GET: Processo/Criar
         public IActionResult Criar()
@@ -151,6 +158,33 @@ namespace fsbr_desafio.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        
+        // POST: Processo/ConfirmarVisualizacao/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmarVisualizacao(int id)
+        {
+            var processo = await _context.Processos.FindAsync(id);
+            try
+            {
+                processo.DataDeVisualizacao = DateTime.Now;
+                _context.Update(processo);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProcessoExists(processo.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Detalhes), new { id });
+
         }
 
         private bool ProcessoExists(int id)

@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Components
 @model fsbr_desafio.Models.Processo
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -12,13 +13,21 @@
     <span asp-validation-for="Npu" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="Municipio" class="control-label"></label>
-    <input asp-for="Municipio" class="form-control" />
-    <span asp-validation-for="Municipio" class="text-danger"></span>
-</div>
-<div class="form-group">
     <label asp-for="Uf" class="control-label"></label>
-    <input asp-for="Uf" class="form-control" />
-    <span asp-validation-for="Uf" class="text-danger"></span>
+    <select asp-for="Uf" class="form-select" onchange="aoSelecionarUf()">
+        <option selected>Selecione um estado</option>
+        @foreach(var uf in await IbgeApi.BuscarUfs())
+        {<option value=@uf.sigla>@uf.nome</option>}
+    </select>
 </div>
+
+<div class="form-group">
+    <label asp-for="Municipio" class="control-label"></label>
+    <select asp-for="Municipio" class="form-select">
+        <option selected>Selecione um município</option>
+    </select>
+</div>
+
 <p></p>
+
+<script src="~/js/ibge.js" asp-append-version="true"></script>

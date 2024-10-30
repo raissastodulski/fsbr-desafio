@@ -5,7 +5,6 @@ namespace fsbr_desafio.Services
     public static class IbgeApi
     {
         private static string urlBase = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-        private static string urlBuscarMunicipiosPorUf = $"{urlBase}/id/municipios";
         private static HttpClient solicitacao = new HttpClient();
 
         public static async Task<List<UfViewModel>> BuscarUfs()
@@ -19,9 +18,9 @@ namespace fsbr_desafio.Services
             return null;
         }
 
-        public static async Task<List<MunicipioViewModel>> BuscarMunicipiosPorUf(int ufId)
+        public static async Task<List<MunicipioViewModel>> BuscarMunicipiosPorUf(string uf)
         {
-            var response = await solicitacao.GetAsync($"{urlBuscarMunicipiosPorUf}/{ufId}/municipios");
+            var response = await solicitacao.GetAsync($"{urlBase}/{uf}/municipios");
             if (response.IsSuccessStatusCode)
             {
                 var municipios = await response.Content.ReadFromJsonAsync<List<MunicipioViewModel>>();
