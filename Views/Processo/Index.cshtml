@@ -34,3 +34,19 @@
 }
     </tbody>
 </table>
+
+@{
+    var anteriorDesabilitado = !Model.TemPaginaAnterior ? "disabled" : "";
+    var seguinteDesabilitado = !Model.TemPaginaSeguinte ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pagina="@(Model.Pagina - 1)"
+   class="btn btn-default @anteriorDesabilitado">
+    Anterior
+</a>
+<a asp-action="Index"
+   asp-route-pagina="@(Model.Pagina + 1)"
+   class="btn btn-default @seguinteDesabilitado">
+    Próximo
+</a>
