@@ -11,7 +11,7 @@ using fsbr_desafio.Data;
 namespace fsbr_desafio.Migrations
 {
     [DbContext(typeof(FsbrDesafioContexto))]
-    [Migration("20241030054725_Genesis")]
+    [Migration("20241030062324_Genesis")]
     partial class Genesis
     {
         /// <inheritdoc />

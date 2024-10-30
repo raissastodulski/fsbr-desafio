@@ -4,7 +4,7 @@ using fsbr_desafio.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<FsbrDesafioContexto>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("ProcessoContexto") ?? throw new InvalidOperationException("Connection string 'ProcessoContexto' not found.")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("FsbrDesafioContexto") ?? throw new InvalidOperationException("Connection string 'FsbrDesafioContexto' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
